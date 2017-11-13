@@ -1,0 +1,8 @@
+steps:
+  - name: "gcr.io/cloud-builders/go"
+    args: ["install", "github.com/nkubala/spinnaker-test"]
+    env: ["PROJECT_ROOT=github.com/nkubala/spinnaker-test"]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["build", "-t", "gcr.io/nick-cloudbuild/spinnaker-test:$REVISION_ID", "-f", "Dockerfile", "."]
+images:
+  - "gcr.io/nick-cloudbuild/spinnaker-test:$REVISION_ID"
